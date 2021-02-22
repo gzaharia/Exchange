@@ -23,6 +23,7 @@ public class ExchangeRateController {
         this.exchangeRateRepository = exchangeRateRepository;
     }
 
+
     @PostMapping("/create")
     @ApiOperation(value = "Simple creation of exchange rates")
     public Mono<ExchangeRate> save(@RequestBody RqCreateExchangeRateDto rateDto) {

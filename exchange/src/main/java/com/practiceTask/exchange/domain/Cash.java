@@ -25,7 +25,7 @@ public class Cash {
     private int operatorId;
 
     @Column(value = "currency_code")
-    private String currency_Code;
+    private String currencyCode;
 
     @Column(value = "amount")
     private int amount;

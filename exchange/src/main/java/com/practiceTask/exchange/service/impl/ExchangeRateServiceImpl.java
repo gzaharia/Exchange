@@ -26,4 +26,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 
         return exchangeRateRepository.save(exchangeRate);
     }
+
+
 }
