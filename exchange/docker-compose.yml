@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  postgres-db:
+    image: postgres
+    container_name: postgres-db
+    restart: on-failure
+    environment:
+    - POSTGRES_DB=exchange
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=password
+    ports:
+    - 5432:5432
+
+  exchange-app:
+    image: exchange-app
+    build: .
+    container_name: exchange-app
+    restart: on-failure
+    environment:
+    - _JAVA_OPTIONS=-Xmx512m -Xms256m
+    - SPRING_DATASOURCE_USERNAME=postgres
+    - SPRING_DATASOURCE_PASSWORD=password
+    - SPRING_DATASOURCE_URL=r2dbc:postgresql://postgres-db:5432/exchange
+    ports:
+    - 8084:8080
+
+    depends_on:
+    - postgres-db

@@ -1,0 +1,67 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.0-M2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'net.ltgt.apt' version '0.21'
+//    id 'org.springframework.boot' version '2.4.2'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+    id 'com.palantir.docker' version '0.22.1'
+}
+
+group = 'com.practiceTask'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
+docker {
+    name "Exchange System"
+    dockerfile file('Dockerfile')
+    copySpec.from(jar).rename(".*", "app.jar")
+    buildArgs(['JAR_FILE': "app.jar"])
+}
+
+dependencies {
+    //spring-boot implementations
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
+    //lombok
+    annotationProcessor 'org.projectlombok:lombok:1.16.16'
+    compileOnly 'org.projectlombok:lombok:1.16.16'
+
+    //postgres
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'io.r2dbc:r2dbc-postgresql'
+
+    //flyway
+    implementation 'org.flywaydb:flyway-core'
+    compile 'org.springframework:spring-jdbc:3.2.0.M2'
+
+    //mapstruct
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+    implementation group: 'io.springfox', name: 'springfox-bean-validators', version: '2.4.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+}
+
+test {
+    useJUnitPlatform()
+}
