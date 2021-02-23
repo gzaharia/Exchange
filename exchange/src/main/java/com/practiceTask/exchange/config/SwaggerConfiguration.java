@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title("Exchange System")
+                .title("ExchangeService System")
                 .description("Practice task")
                 .build();
 

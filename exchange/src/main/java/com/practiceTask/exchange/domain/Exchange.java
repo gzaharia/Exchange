@@ -29,10 +29,10 @@ public class Exchange {
     private String exchangeRateId;
 
     @Column(value = "received_amount")
-    private String receivedAmount;
+    private float receivedAmount;
 
     @Column(value = "released_amount")
-    private String releasedAmount;
+    private float releasedAmount;
 
     @Column(value = "operator_id")
     private String operatorId;

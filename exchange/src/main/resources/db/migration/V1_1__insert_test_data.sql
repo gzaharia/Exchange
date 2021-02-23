@@ -18,10 +18,10 @@ VALUES
 
 INSERT INTO exchange(name_of_exchange, currency_code, exchange_rate_id, received_amount, released_amount, operator_id )
 VALUES
-('Exchange-Botanica', 'EUR', 1, 100, 1970,1),
-('Exchange-Centru', 'USD', 1, 50, 985,2);
+('ExchangeService-Botanica', 'EUR', 1, 100, 1970,1),
+('ExchangeService-Centru', 'USD', 1, 50, 985,2);
 
 INSERT INTO companies(name_of_company, exchange_id, operator_id)
 VALUES
-('Exchange-Pro' ,1, 1),
+('ExchangeService-Pro' ,1, 1),
 ('Money-Factory', 1, 1);
